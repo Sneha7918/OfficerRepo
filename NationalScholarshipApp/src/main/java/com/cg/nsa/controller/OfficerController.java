@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.nsa.entity.Officer;
 import com.cg.nsa.service.IOfficerService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("Officer Controller")
 @RestController
 @RequestMapping(value = "/officer")
 
@@ -24,6 +28,7 @@ public class OfficerController {
 @Autowired
 	IOfficerService officerService;
 
+@ApiOperation(value="add new Officer")
 
 @PostMapping(value = "/addOfficer")
 	public ResponseEntity<String> addOfficer(@RequestBody Officer officer) {
@@ -47,6 +52,8 @@ public class OfficerController {
 		return officerService.getOfficerByState(state);
 	}
 
+
+@ApiOperation(value="get all Officers")
 
 @GetMapping(value = "/getAll")
 	public List<Officer> getAllOfficers() {
