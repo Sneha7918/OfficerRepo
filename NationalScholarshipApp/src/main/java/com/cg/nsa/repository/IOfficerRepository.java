@@ -13,6 +13,8 @@ public interface IOfficerRepository extends JpaRepository<Officer, String>
 	List<Officer> getOfficerByState(String state);
 	
 	Officer getByUserId(String userId);
+
+	boolean existsOfficerByState(String state);
 	
 	//Officer saveOfficer(Officer officer);
 	

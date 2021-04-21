@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cg.nsa.entity.Officer;
 import com.cg.nsa.exception.IdNotFoundException;
+import com.cg.nsa.exception.StateNotFoundException;
 import com.cg.nsa.repository.IOfficerRepository;
 
 @Service
@@ -48,9 +49,12 @@ IOfficerRepository officerDao;
 @Override
 	public List<Officer> getOfficerByState(String state) {
 		
+	 if(officerDao.existsOfficerByState(state)) 	{
 		return  officerDao.getOfficerByState(state);
-		
-		
+	 }
+	else
+		 throw new StateNotFoundException("No Officer in this state.");
+		 
 	}
 
 

@@ -13,4 +13,11 @@ public class GlobalException {
 	{
 		return new ResponseEntity<Object>(exception.getMessage(),HttpStatus.NOT_FOUND);
 	}
+	
+	
+	@ExceptionHandler(StateNotFoundException.class)
+	public ResponseEntity<Object> handleException(StateNotFoundException exception)
+	{
+		return new ResponseEntity<Object>(exception.getMessage(),HttpStatus.NOT_FOUND);
+	}
 }
