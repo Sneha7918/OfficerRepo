@@ -8,8 +8,11 @@ import org.springframework.stereotype.Repository;
 import com.cg.nsa.entity.Officer;
 
 @Repository
-public interface IOfficerRepository extends JpaRepository<Officer, Integer> 
+public interface IOfficerRepository extends JpaRepository<Officer, String> 
 {
+	List<Officer> getOfficerByState(String state);
+	
+	Officer getByUserId(String userId);
 	
 	//Officer saveOfficer(Officer officer);
 	

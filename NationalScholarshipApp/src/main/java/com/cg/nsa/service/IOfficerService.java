@@ -2,15 +2,21 @@ package com.cg.nsa.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.cg.nsa.entity.Officer;
 
+
+@Service
 public interface IOfficerService {
 	
-	Officer addOfficer(Officer officer);
+	public Officer addOfficer(Officer officer);
 	
-	Officer editOfficer(Officer officer);
+	public Officer editOfficer(Officer officer,String userId);
 	
-	Officer getOfficerByState(String state);
+	public List<Officer> getOfficerByState(String state);
 	
-	List<Officer> getAllOfficers();
+	public List<Officer> getAllOfficers();
+
+	//public Officer getByuserId(int pId);
 }
