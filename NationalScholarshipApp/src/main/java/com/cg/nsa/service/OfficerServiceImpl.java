@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.nsa.entity.Officer;
+import com.cg.nsa.exception.IdNotFoundException;
 import com.cg.nsa.repository.IOfficerRepository;
 
 @Service
@@ -25,13 +26,22 @@ IOfficerRepository officerDao;
 
 @Override
 	public Officer editOfficer(Officer officer,String userId) {
-	Officer officer1 = officerDao.getByUserId(userId);
-
-	officer1.setPassword(officer.getPassword());
-	officer1.setState(officer.getState());
-
 	
-		return officerDao.save(officer1);
+	     if(officerDao.existsById(userId)) 	{
+		
+	           Officer officer1 = officerDao.getByUserId(userId);
+
+	           officer1.setPassword(officer.getPassword());
+	           officer1.setState(officer.getState());
+	
+	           return officerDao.save(officer1);
+	
+	      }
+	
+	     else
+     	       throw new IdNotFoundException("Invalid userId!");
+	
+		
 	}
 
 

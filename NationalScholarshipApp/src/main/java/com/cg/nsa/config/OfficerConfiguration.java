@@ -32,7 +32,7 @@ public class OfficerConfiguration {
 	                "Officer details end points",
 	                "1.0",
 	                "Terms of service",
-	                new Contact("capgemini", "", "todurkar.sneha@gmail.com"),
+	                new Contact("Sneha Todurkar", "", "todurkar.sneha@gmail.com"),
 	               "Apache License Version 2.0",
 	                "https://www.apache.org/licenses/LICENSE-2.0");
 	        return apiInfo;
