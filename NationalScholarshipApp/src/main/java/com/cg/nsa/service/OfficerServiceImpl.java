@@ -12,13 +12,22 @@ import com.cg.nsa.repository.IOfficerRepository;
 
 @Service
 
+/***
+ * 
+ * @author SNEHA
+ *
+ */
+
 public class OfficerServiceImpl implements IOfficerService{
 
 @Autowired
 
 IOfficerRepository officerDao;
 
-
+/**
+ * @param officer
+ * @return
+ */
 @Override
 	public Officer addOfficer(Officer officer) {
 		return officerDao.save(officer);
@@ -28,32 +37,39 @@ IOfficerRepository officerDao;
 @Override
 	public Officer editOfficer(Officer officer,String userId) {
 	
-	     if(officerDao.existsById(userId)) 	{
-		
-	           Officer officer1 = officerDao.getByUserId(userId);
+	     if(officerDao.existsById(userId)) {
+	    	 
+	    	   Officer officer1 = officerDao.getByUserId(userId);
 
 	           officer1.setPassword(officer.getPassword());
 	           officer1.setState(officer.getState());
 	
 	           return officerDao.save(officer1);
 	
-	      }
-	
-	     else
+	     }     
+	      
+	     else {
+	    	 
      	       throw new IdNotFoundException("Invalid userId!");
-	
-		
+	     }
+			
 	}
 
 
 @Override
 	public List<Officer> getOfficerByState(String state) {
 		
-	 if(officerDao.existsOfficerByState(state)) 	{
-		return  officerDao.getOfficerByState(state);
+	 if(officerDao.existsOfficerByState(state)) {
+		 
+		 return  officerDao.getOfficerByState(state);
 	 }
-	else
+		
+	
+	else {
+		
 		 throw new StateNotFoundException("No Officer in this state.");
+
+	}
 		 
 	}
 
@@ -62,9 +78,5 @@ IOfficerRepository officerDao;
 	public List<Officer> getAllOfficers() {
 		return officerDao.findAll();
 	}
-
-
-
-
 
 }

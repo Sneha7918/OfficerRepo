@@ -1,10 +1,16 @@
 package com.cg.nsa.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.nsa.entity.Officer;
+import com.cg.nsa.exception.ValidationException;
 import com.cg.nsa.service.IOfficerService;
 
 import io.swagger.annotations.Api;
@@ -23,20 +30,52 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping(value = "/officer")
 
+/***
+ * 
+ * @author SNEHA
+ * Version 1.0
+ * Description this is a controller class
+ * created date 22-04-2021
+ *
+ */
+
 public class OfficerController {
 
 @Autowired
-	IOfficerService officerService;
+
+IOfficerService officerService;
 
 @ApiOperation(value="add new Officer")
 
+/***
+ * 
+ * @param officer
+ * @return ResponseEntity 
+ */
 @PostMapping(value = "/addOfficer")
-	public ResponseEntity<String> addOfficer(@RequestBody Officer officer) {
-		officerService.addOfficer(officer);
+	public ResponseEntity<String> addOfficer(@Valid @RequestBody Officer officer,BindingResult bindingResult) throws MethodArgumentNotValidException {
+		
+	String error="";   //stores all errors
+	if(bindingResult.hasErrors())
+	{
+		System.out.println("yes it has some errors");
+		List<FieldError> errors=bindingResult.getFieldErrors();
+		System.out.println("errors "+errors);
+		
+		List<String> errorList=new ArrayList<String>();
+		for(FieldError err:errors)
+		{
+			errorList.add(err.getDefaultMessage());
+		}
+		throw new ValidationException(errorList);
+	}
+	
+	
+	
+	
+	officerService.addOfficer(officer);
 		return new ResponseEntity<>("Added Officer successfully", HttpStatus.OK);
 	}
-
-
 
 
 @PutMapping(value = "/updateOfficer/{userId}")

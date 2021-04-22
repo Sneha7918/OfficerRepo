@@ -26,6 +26,7 @@ public class OfficerConfiguration {
 	                .build()
 	                .apiInfo(metaData());
 	    }
+	 
 	    private ApiInfo metaData() {
 	    	  ApiInfo apiInfo = new ApiInfo(
 	                "Officer",
