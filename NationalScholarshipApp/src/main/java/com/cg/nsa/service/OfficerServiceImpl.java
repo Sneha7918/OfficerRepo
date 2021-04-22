@@ -14,7 +14,10 @@ import com.cg.nsa.repository.IOfficerRepository;
 
 /***
  * 
- * @author SNEHA
+ * @author SNEHA V
+ * Version 1.0
+ * Description this is a controller class
+ * created date 22-04-2021
  *
  */
 
@@ -24,9 +27,10 @@ public class OfficerServiceImpl implements IOfficerService{
 
 IOfficerRepository officerDao;
 
-/**
+/***
+ * 
  * @param officer
- * @return
+ * @return a message whether adding of officer was successful or not
  */
 @Override
 	public Officer addOfficer(Officer officer) {
@@ -34,6 +38,11 @@ IOfficerRepository officerDao;
 	}
 
 
+/***
+ * 
+ * @param officer,userId
+ * @return message if officer details were edited or not
+ */
 @Override
 	public Officer editOfficer(Officer officer,String userId) {
 	
@@ -56,6 +65,12 @@ IOfficerRepository officerDao;
 	}
 
 
+
+/***
+ * 
+ * @param state
+ * @return List of Officers in that state
+ */
 @Override
 	public List<Officer> getOfficerByState(String state) {
 		
@@ -74,6 +89,12 @@ IOfficerRepository officerDao;
 	}
 
 
+
+/***
+ * 
+ * 
+ * @return List of all Officers
+ */
 @Override
 	public List<Officer> getAllOfficers() {
 		return officerDao.findAll();

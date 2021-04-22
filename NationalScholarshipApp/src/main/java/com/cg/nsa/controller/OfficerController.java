@@ -32,7 +32,7 @@ import io.swagger.annotations.ApiOperation;
 
 /***
  * 
- * @author SNEHA
+ * @author SNEHA V
  * Version 1.0
  * Description this is a controller class
  * created date 22-04-2021
@@ -50,12 +50,14 @@ IOfficerService officerService;
 /***
  * 
  * @param officer
- * @return ResponseEntity 
+ * @return a message whether adding of officer was successful or not
  */
+
 @PostMapping(value = "/addOfficer")
 	public ResponseEntity<String> addOfficer(@Valid @RequestBody Officer officer,BindingResult bindingResult) throws MethodArgumentNotValidException {
 		
 	String error="";   //stores all errors
+	
 	if(bindingResult.hasErrors())
 	{
 		System.out.println("yes it has some errors");
@@ -63,6 +65,7 @@ IOfficerService officerService;
 		System.out.println("errors "+errors);
 		
 		List<String> errorList=new ArrayList<String>();
+		
 		for(FieldError err:errors)
 		{
 			errorList.add(err.getDefaultMessage());
@@ -71,12 +74,15 @@ IOfficerService officerService;
 	}
 	
 	
-	
-	
 	officerService.addOfficer(officer);
 		return new ResponseEntity<>("Added Officer successfully", HttpStatus.OK);
 	}
 
+/***
+ * 
+ * @param officer,userId
+ * @return message if officer details were edited or not
+ */
 
 @PutMapping(value = "/updateOfficer/{userId}")
 	public ResponseEntity<String> editOfficer(@RequestBody Officer officer,@PathVariable String userId) {
@@ -85,12 +91,22 @@ IOfficerService officerService;
 	}
 
 
+/***
+ * 
+ * @param state
+ * @return List of Officers in that state
+ */
+
 @GetMapping(value = "/getOfficerByState/{state}")
 	public List<Officer> getOfficerByState(@PathVariable String state) {
 		
 		return officerService.getOfficerByState(state);
 	}
 
+/***
+ * 
+ * @return List of all Officers
+ */
 
 @ApiOperation(value="get all Officers")
 

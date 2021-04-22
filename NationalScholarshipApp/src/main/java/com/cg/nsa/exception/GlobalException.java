@@ -6,6 +6,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
+
+/***
+ * 
+ * @author SNEHA V
+ * Version 1.0
+ * Description this is a controller class
+ * created date 22-04-2021
+ *
+ */
 public class GlobalException {
 
 	@ExceptionHandler(IdNotFoundException.class)

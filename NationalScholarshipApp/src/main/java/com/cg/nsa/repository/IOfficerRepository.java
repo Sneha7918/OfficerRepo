@@ -7,7 +7,16 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.nsa.entity.Officer;
 
+
 @Repository
+/***
+ * 
+ * @author SNEHA V
+ * Version 1.0
+ * Description this is a controller class
+ * created date 22-04-2021
+ *
+ */
 public interface IOfficerRepository extends JpaRepository<Officer, String> 
 {
 	List<Officer> getOfficerByState(String state);
