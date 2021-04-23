@@ -14,14 +14,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 
-/***
+/******************************************************************************
  * 
  * @author SNEHA V
  * Version 1.0
  * Description this is a configuration class
  * created date 22-04-2021
  *
- */
+ ******************************************************************************/
 
 public class OfficerConfiguration {
 
