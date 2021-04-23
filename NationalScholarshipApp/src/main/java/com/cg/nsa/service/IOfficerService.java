@@ -6,16 +6,16 @@ import org.springframework.stereotype.Service;
 
 import com.cg.nsa.entity.Officer;
 
-
 @Service
-/***
+/*********************************************************************
  * 
  * @author SNEHA V
  * Version 1.0
  * Description this is a controller class
  * created date 22-04-2021
  *
- */
+ *********************************************************************/
+
 public interface IOfficerService {
 	
 	public Officer addOfficer(Officer officer);
@@ -26,5 +26,5 @@ public interface IOfficerService {
 	
 	public List<Officer> getAllOfficers();
 
-	//public Officer getByuserId(int pId);
+
 }

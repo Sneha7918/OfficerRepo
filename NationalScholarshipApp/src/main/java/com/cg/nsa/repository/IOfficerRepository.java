@@ -9,14 +9,15 @@ import com.cg.nsa.entity.Officer;
 
 
 @Repository
-/***
+/*********************************************************************
  * 
  * @author SNEHA V
  * Version 1.0
  * Description this is a controller class
  * created date 22-04-2021
  *
- */
+ *********************************************************************/
+
 public interface IOfficerRepository extends JpaRepository<Officer, String> 
 {
 	List<Officer> getOfficerByState(String state);
@@ -24,12 +25,5 @@ public interface IOfficerRepository extends JpaRepository<Officer, String>
 	Officer getByUserId(String userId);
 
 	boolean existsOfficerByState(String state);
-	
-	//Officer saveOfficer(Officer officer);
-	
-	//Officer updateOfficer(Officer officer);
-	
-	//Officer fetchOfficerByState(String state);
-	
-	//List<Officer> fetchAllOfficers();
+
 }

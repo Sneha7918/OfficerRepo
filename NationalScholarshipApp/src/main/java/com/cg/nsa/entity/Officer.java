@@ -11,14 +11,14 @@ import javax.validation.constraints.NotEmpty;
 @Table(name="officer10")
 @PrimaryKeyJoinColumn(name="userId")
 
-/***
+/*********************************************************************
  * 
  * @author SNEHA V
  * Version 1.0
  * Description this is a controller class
  * created date 22-04-2021
  *
- */
+ *********************************************************************/
 
 public class Officer extends User 
 {

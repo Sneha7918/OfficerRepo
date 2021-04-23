@@ -8,15 +8,13 @@ package com.cg.nsa.exception;
  * created date 22-04-2021
  *
  *********************************************************************/
-public class IdNotFoundException extends  RuntimeException {
+public class OfficerExistException extends RuntimeException{
 
-	public IdNotFoundException()
-	{
+	public OfficerExistException() {
 		
 	}
 	
-    public IdNotFoundException(String msg)
-    {
+public OfficerExistException(String msg) {
 		super(msg);
 	}
 	

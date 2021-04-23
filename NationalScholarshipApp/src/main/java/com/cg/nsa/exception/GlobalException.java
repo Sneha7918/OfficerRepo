@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 
-/***
+/*********************************************************************
  * 
  * @author SNEHA V
  * Version 1.0
  * Description this is a controller class
  * created date 22-04-2021
  *
+ *********************************************************************
  */
 public class GlobalException {
 
@@ -33,6 +34,12 @@ public class GlobalException {
 	@ExceptionHandler(ValidationException.class)
 	public ResponseEntity<Object> handleException(ValidationException exception){
 		return new  ResponseEntity<Object> (exception.getMessages(),HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(OfficerExistException.class)
+	public ResponseEntity<Object> handleException(OfficerExistException exception)
+	{
+		return new ResponseEntity<Object>(exception.getMessage(),HttpStatus.NOT_FOUND);
 	}
 	
 }
