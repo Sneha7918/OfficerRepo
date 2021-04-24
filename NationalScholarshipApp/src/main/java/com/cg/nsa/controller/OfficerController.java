@@ -74,6 +74,7 @@ IOfficerService officerService;
 		{
 			errorList.add(err.getDefaultMessage());
 		}
+		
 		throw new ValidationException(errorList);
 	}
 	
@@ -90,10 +91,11 @@ IOfficerService officerService;
 
 @PutMapping(value = "/updateOfficer/{userId}")
 	public ResponseEntity<String> editOfficer(@RequestBody Officer officer,@PathVariable String userId) {
-		try{
+		
+	   try{
 			officerService.editOfficer(officer,userId);
 		
-		return new ResponseEntity<>("Updated officer successfully", HttpStatus.OK);
+		    return new ResponseEntity<>("Updated officer successfully", HttpStatus.OK);
 		}
 		
 		catch(IdNotFoundException e) {
@@ -112,9 +114,10 @@ IOfficerService officerService;
 @GetMapping(value = "/getOfficerByState/{state}")
 	public List<Officer> getOfficerByState(@PathVariable String state) {
 		
-	try {
-		return officerService.getOfficerByState(state);
-	}
+	    try {
+		    return officerService.getOfficerByState(state);
+	    }
+	    
 		catch(StateNotFoundException e) {
 			throw new StateNotFoundException("No Officer in this state !");
 			

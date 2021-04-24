@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.cg.nsa.entity.Officer;
 import com.cg.nsa.entity.User;
+import com.cg.nsa.exception.IdNotFoundException;
+import com.cg.nsa.exception.OfficerExistException;
+import com.cg.nsa.exception.StateNotFoundException;
 import com.cg.nsa.exception.ValidationException;
 import com.cg.nsa.service.IOfficerService;
 
@@ -29,19 +32,33 @@ class NationalScholarshipAppApplicationTests {
 	IOfficerService service;
 	
 //	@Test
-//	void testInstitution() {
+//	void testOfficer() {
 //		Officer officer = new Officer("141","deepu","officer","Deepali verma","Goa");
 //	 		
 //		assertEquals(officer,service.addOfficer(officer));
 //		
 //	}
 	
+//	@Test
+//	void testOfficerExist() {
+//		Officer officer = new Officer("410","nikitham","officer","Nikitha Menon","Kerala");
+//	 		
+//		assertThrows(OfficerExistException.class,()->service.addOfficer(officer));
+//		
+//	}
+	
+//	@Test
+//	void testIdNotFound() {
+//		Officer officer = new Officer("414","Harish","officer","Harish Keni","Karnataka");
+//	 		
+//		assertThrows(IdNotFoundException.class,()->service.editOfficer(officer,"414"));
+//		
+//	}
+
 	@Test
-	void testInstitution1() {
-		Officer officer = new Officer("","","","","");
+	void testStateNotFound() {
 	 		
-		assertThrows(ValidationException.class,()->service.addOfficer(officer));
+		assertThrows(StateNotFoundException.class,()->service.getOfficerByState("Rajasthan"));
 		
 	}
-
 }

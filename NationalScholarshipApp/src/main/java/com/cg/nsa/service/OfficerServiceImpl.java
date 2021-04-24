@@ -11,8 +11,6 @@ import com.cg.nsa.exception.OfficerExistException;
 import com.cg.nsa.exception.StateNotFoundException;
 import com.cg.nsa.repository.IOfficerRepository;
 
-@Service
-
 /*********************************************************************
  * 
  * @author SNEHA V
@@ -22,6 +20,7 @@ import com.cg.nsa.repository.IOfficerRepository;
  *
  *********************************************************************/
 
+@Service
 public class OfficerServiceImpl implements IOfficerService{
 
 @Autowired
@@ -39,11 +38,12 @@ IOfficerRepository officerDao;
 	public Officer addOfficer(Officer officer) {
 	
 	if(officerDao.existsById(officer.getUserId())) {
-		throw new OfficerExistException("This Officer exists ! ");
+		
+		 throw new OfficerExistException("This Officer exists ! ");
 	}
 	
 	else {
-        return officerDao.save(officer);
+         return officerDao.save(officer);
 	}
 }
 
@@ -58,25 +58,19 @@ IOfficerRepository officerDao;
 @Override
 	public Officer editOfficer(Officer officer,String userId) {
 	
-	     if(officerDao.existsById(userId)) {
+	   if(officerDao.existsById(userId)) {
 	    	 
-	    	   Officer officer1 = officerDao.getByUserId(userId);	    	   
-	    	   
-	           officer1.setPassword(officer.getPassword());
-	          
-	           officer1.setState(officer.getState());
-	
-	           return officerDao.save(officer1);
-	
+	    	   Officer officer1 = officerDao.getByUserId(userId);	    	   	    	   
+	           officer1.setPassword(officer.getPassword());	          
+	           officer1.setState(officer.getState());	
+	           return officerDao.save(officer1);	
 	     }     
 	      
-	     else {	    	 
+	    else {	    	 
      	       throw new IdNotFoundException();
 	     }
 			
 	}
-
-
 
 /*********************************************************************
  * 
@@ -95,8 +89,7 @@ IOfficerRepository officerDao;
 	else {		
 		 throw new StateNotFoundException();
 
-	}
-		 
+	}		 
 	}
 
 /*********************************************************************

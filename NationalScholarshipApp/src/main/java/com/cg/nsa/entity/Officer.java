@@ -96,6 +96,5 @@ public class Officer extends User
 			return false;
 		return true;
 	}
-	
-	
+		
 }

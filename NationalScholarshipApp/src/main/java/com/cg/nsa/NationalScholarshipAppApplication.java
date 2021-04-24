@@ -4,6 +4,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+/******************************************************************************
+ * 
+ * @author SNEHA V
+ * Version 1.0
+ * Description this is a configuration class
+ * created date 22-04-2021
+ *
+ ******************************************************************************/
+
 @SpringBootApplication
 public class NationalScholarshipAppApplication {
 
