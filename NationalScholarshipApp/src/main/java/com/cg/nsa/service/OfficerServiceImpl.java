@@ -71,7 +71,7 @@ IOfficerRepository officerDao;
 	     }     
 	      
 	     else {	    	 
-     	       throw new IdNotFoundException("Invalid userId!");
+     	       throw new IdNotFoundException();
 	     }
 			
 	}
@@ -93,7 +93,7 @@ IOfficerRepository officerDao;
 	 }		
 	
 	else {		
-		 throw new StateNotFoundException("No Officer in this state !");
+		 throw new StateNotFoundException();
 
 	}
 		 

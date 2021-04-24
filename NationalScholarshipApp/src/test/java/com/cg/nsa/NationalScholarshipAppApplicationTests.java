@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.cg.nsa.entity.Officer;
 import com.cg.nsa.entity.User;
@@ -27,20 +28,20 @@ class NationalScholarshipAppApplicationTests {
 	
 	IOfficerService service;
 	
-	@Test
-	void testInstitution() {
-		Officer officer = new Officer("141","deepu","officer","Deepali verma","Goa");
-	 		
-		assertEquals(officer,service.addOfficer(officer));
-		
-	}
-	
 //	@Test
-//	void testInstitution1() {
-//		Officer officer = new Officer("141","deepu","officer","Deepali verma","");
+//	void testInstitution() {
+//		Officer officer = new Officer("141","deepu","officer","Deepali verma","Goa");
 //	 		
-//		assertThrows(ValidationException.class,()->service.addOfficer(officer));
+//		assertEquals(officer,service.addOfficer(officer));
 //		
 //	}
+	
+	@Test
+	void testInstitution1() {
+		Officer officer = new Officer("","","","","");
+	 		
+		assertThrows(ValidationException.class,()->service.addOfficer(officer));
+		
+	}
 
 }

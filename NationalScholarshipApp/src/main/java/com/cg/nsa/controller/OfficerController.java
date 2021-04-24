@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.nsa.entity.Officer;
 import com.cg.nsa.exception.IdNotFoundException;
+import com.cg.nsa.exception.StateNotFoundException;
 import com.cg.nsa.exception.ValidationException;
 import com.cg.nsa.service.IOfficerService;
 
@@ -89,8 +90,15 @@ IOfficerService officerService;
 
 @PutMapping(value = "/updateOfficer/{userId}")
 	public ResponseEntity<String> editOfficer(@RequestBody Officer officer,@PathVariable String userId) {
-		officerService.editOfficer(officer,userId);
+		try{
+			officerService.editOfficer(officer,userId);
+		
 		return new ResponseEntity<>("Updated officer successfully", HttpStatus.OK);
+		}
+		
+		catch(IdNotFoundException e) {
+			throw new IdNotFoundException("Invalid userId !");
+		}
 	}
 
 
@@ -104,7 +112,13 @@ IOfficerService officerService;
 @GetMapping(value = "/getOfficerByState/{state}")
 	public List<Officer> getOfficerByState(@PathVariable String state) {
 		
+	try {
 		return officerService.getOfficerByState(state);
+	}
+		catch(StateNotFoundException e) {
+			throw new StateNotFoundException("No Officer in this state !");
+			
+		}
 	}
 
 /*********************************************************************
