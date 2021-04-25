@@ -55,10 +55,18 @@ class NationalScholarshipAppApplicationTests {
 //		
 //	}
 
+//	@Test
+//	void testStateNotFound() {
+//	 		
+//		assertThrows(StateNotFoundException.class,()->service.getOfficerByState("Rajasthan"));
+//		
+//	}
+	
 	@Test
-	void testStateNotFound() {
-	 		
-		assertThrows(StateNotFoundException.class,()->service.getOfficerByState("Rajasthan"));
+	void testPasswordEmpty() {
+      	Officer officer = new Officer("415","","officer","Shweta Tiwari","Goa");
+
+		assertThrows(ValidationException.class,()->service.addOfficer(officer));
 		
 	}
 }

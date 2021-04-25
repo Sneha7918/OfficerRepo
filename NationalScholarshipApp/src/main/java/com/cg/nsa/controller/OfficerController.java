@@ -21,10 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.nsa.entity.Officer;
+import com.cg.nsa.entity.Scholarship;
+import com.cg.nsa.entity.Student;
 import com.cg.nsa.exception.IdNotFoundException;
 import com.cg.nsa.exception.StateNotFoundException;
 import com.cg.nsa.exception.ValidationException;
 import com.cg.nsa.service.IOfficerService;
+import com.cg.nsa.service.IScholarshipService;
+import com.cg.nsa.service.IStudentService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,6 +51,14 @@ public class OfficerController {
 @Autowired
 
 IOfficerService officerService;
+
+@Autowired
+
+IStudentService studentService;
+
+@Autowired
+
+IScholarshipService scholarshipService;
 
 @ApiOperation(value="add new Officer")
 
@@ -136,5 +148,42 @@ IOfficerService officerService;
 	public List<Officer> getAllOfficers() {
 		return officerService.getAllOfficers();
 	}
+
+
+/*********************************************************************
+ * 
+ * Grant approval Controller
+ * 
+ *********************************************************************/
+
+@ApiOperation(value="Grant Approval")
+@GetMapping(value="/grantApproval/{studentId}")
+
+public String grant(@PathVariable int studentId) {
+	Student student =studentService.findByStudentId(studentId);
+	
+	for(Scholarship s : scholarshipService.getAllScholarships()) {
+		List<Student> stdList = s.getStudentList();
+		for(Student std : stdList) {
+			if(std.getStudentId()== studentId) {
+				
+				Scholarship scholarship =scholarshipService.getById(s.getScholarshipId()).orElse(null);
+				Scholarship grant_Scholarship = officerService.grantApproval(scholarship, student);
+				if(grant_Scholarship!=null) {
+					String str =" Approval granted for " + "student Id " + student.getStudentId() +" Student Name " +student.getFullName() + " ";
+					return str;
+				}
+				
+				else {
+					String str =" Approval rejected for " + "student Id " + student.getStudentId() +" Student Name " +student.getFullName() + " ";
+					return str;
+				}
+			}
+		}
+	}
+	
+	throw  new IdNotFoundException("Student not registerd");
+	
+}
 	
 }

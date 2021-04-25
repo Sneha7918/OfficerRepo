@@ -1,15 +1,18 @@
 package com.cg.nsa.service;
-
+import com.cg.nsa.entity.*;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.nsa.entity.Officer;
+import com.cg.nsa.entity.Scholarship;
+import com.cg.nsa.entity.Student;
 import com.cg.nsa.exception.IdNotFoundException;
 import com.cg.nsa.exception.OfficerExistException;
 import com.cg.nsa.exception.StateNotFoundException;
 import com.cg.nsa.repository.IOfficerRepository;
+import com.cg.nsa.repository.IStudentRepository;
 
 /*********************************************************************
  * 
@@ -26,6 +29,10 @@ public class OfficerServiceImpl implements IOfficerService{
 @Autowired
 
 IOfficerRepository officerDao;
+
+@Autowired
+
+IStudentRepository studentDao;
 
 /*********************************************************************
  * 
@@ -103,5 +110,28 @@ IOfficerRepository officerDao;
 	public List<Officer> getAllOfficers() {
 		return officerDao.findAll();
 	}
+
+/*********************************************************************
+ * 
+ * 
+ * 
+ *******************************************************************/
+
+@Override
+
+public Scholarship grantApproval(Scholarship scholarship,Student student) {
+	if(student.getHscScore() >= scholarship.getHscScoreCriteria() && student.getSscScore() >= scholarship.getSscScoreCriteria() && student.getFamilyIncome() <= scholarship.getFamilyIncomeCriteria()) {
+		student.setApproval("Approved");
+		studentDao.save(student);
+		return scholarship;
+	}
+	
+	else {
+		student.setApproval("Rejected");
+		studentDao.save(student);
+		return null;
+	}
+}
+
 
 }

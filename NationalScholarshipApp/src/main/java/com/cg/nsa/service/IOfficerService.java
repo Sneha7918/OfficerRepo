@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.cg.nsa.entity.Officer;
+import com.cg.nsa.entity.Scholarship;
+import com.cg.nsa.entity.Student;
 
 @Service
 /*********************************************************************
@@ -25,6 +27,13 @@ public interface IOfficerService {
 	public List<Officer> getOfficerByState(String state);
 	
 	public List<Officer> getAllOfficers();
+
+	/*********************************************************************
+	 * 
+	 * 
+	 * 
+	 *******************************************************************/
+	Scholarship grantApproval(Scholarship scholarship, Student student);
 
 
 }
