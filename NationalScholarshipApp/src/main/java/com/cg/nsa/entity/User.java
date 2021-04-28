@@ -1,12 +1,11 @@
 /********************************************************
- 
+ * 
  * @author Rajkumar V
  * version: 1.0
  * Description: This is the user entity class 
  * Created date: 20-04-2021
- 
- * ******************************************************
- */
+ * 
+ * ******************************************************/
 package com.cg.nsa.entity;
 
 import javax.persistence.Column;
@@ -15,8 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="user10")
@@ -25,12 +23,15 @@ public class User
 {
 	@Id
 	@Column(name="userId")
+	@NotEmpty(message="userId cannot be empty")
 	private String userId;
 	
 	@Column(name="password")
+	@NotEmpty(message="password cannot be empty")
 	private String password;
 	
 	@Column(name="role")
+	@NotEmpty(message="Role cannot be empty")
 	private String role;
 	
 	private int loggedin;
