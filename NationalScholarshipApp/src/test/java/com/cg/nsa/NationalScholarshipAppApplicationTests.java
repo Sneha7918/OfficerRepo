@@ -9,8 +9,9 @@ import com.cg.nsa.entity.Scholarship;
 import com.cg.nsa.entity.Student;
 import com.cg.nsa.exception.StateNotFoundException;
 import com.cg.nsa.exception.IdNotFoundException;
+import com.cg.nsa.exception.InvalidInstitutionException;
 import com.cg.nsa.exception.OfficerExistException;
-
+import com.cg.nsa.service.IInstituteService;
 import com.cg.nsa.service.IOfficerService;
 import com.cg.nsa.service.IScholarshipService;
 import com.cg.nsa.service.IStudentService;
@@ -36,25 +37,29 @@ class NationalScholarshipAppApplicationTests {
 	@Autowired	
 	IStudentService iStudentService;
 	
-	/*************************************************************
-	 *
-	 * Description:Test case to add details of officer
-	 * 
-	 **************************************************************/
+	@Autowired	
+	IInstituteService iInstituteService;
 	
-	@Test
-	void testOfficer() {
-		Officer officer = new Officer("103","srinivasm","officer","Srinivas Murthy","Karnataka");
-	 		
-		assertEquals(officer,iOfficerService.addOfficer(officer));
-		
-	}
 	
 	/*************************************************************
 	 *
-	 * Description:Test case to edit details of officer
+	 * Description:Test case to add details of an officer
 	 * 
 	 **************************************************************/
+	
+//	@Test
+//	void testAddOfficer() {
+//		Officer officer = new Officer("107","Maitili","officer","Maithili Yadav","Karnataka");
+//	 		
+//		assertEquals(officer,iOfficerService.addOfficer(officer));
+//		
+//	}
+	
+	/*******************************************************************************
+	 *
+	 * Description:Test case to check exception while adding details of an officer
+	 * 
+	 *******************************************************************************/
 	
 	@Test
 	void testOfficerExist() {
@@ -62,6 +67,19 @@ class NationalScholarshipAppApplicationTests {
 	 		
 		assertThrows(OfficerExistException.class,()->iOfficerService.addOfficer(officer));
 		
+	}
+	
+	/*************************************************************
+	 *
+	 * Description:Test case to edit details of an officer
+	 * 
+	 **************************************************************/
+	
+	@Test
+	void testEditOfficer() {
+		Officer officer = new Officer("101","dinesh_k","officer","Dinesh Kamat","Karnataka");
+ 		
+		assertEquals(officer,iOfficerService.editOfficer(officer,"101"));
 	}
 	
 	/***************************************************************************
@@ -119,6 +137,22 @@ class NationalScholarshipAppApplicationTests {
 		assertEquals(null,iOfficerService.grantApproval(scholarship, student));
 		
 	}
+	
+
+	/***************************************************************************
+	 *
+	 * Description:Test case to check InvalidInstitutionException
+	 * 
+	 ***************************************************************************/
+	
+	
+	@Test
+	void testInvalidInstitution()
+	{
+		assertThrows(InvalidInstitutionException.class, () -> iOfficerService.statusUpdate(880, "Approved"));
+	}
+	
+	
 	
 
 }
